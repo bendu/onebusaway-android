@@ -424,7 +424,7 @@ public class ArrivalsListFragment extends ListFragment
                 if (which == 0) {
                     goToTrip(stop);
                 } else if (which == 1) {
-                    goToRoute(stop);
+                    goToTripDetails(stop);
                 } else if (which == 2) {
                     ArrayList<String> routes = new ArrayList<String>(1);
                     routes.add(stop.getInfo().getRouteId());
@@ -676,6 +676,11 @@ public class ArrivalsListFragment extends ListFragment
     private void goToRoute(ArrivalInfo stop) {
         RouteInfoActivity.start(getActivity(),
                 stop.getInfo().getRouteId());
+    }
+
+    private void goToTripDetails(ArrivalInfo stop) {
+        TripDetailsActivity.start(getActivity(),
+                stop.getInfo().getTripId(), stop.getInfo().getStopId());
     }
 
     //

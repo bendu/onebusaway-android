@@ -90,6 +90,11 @@
         <activity android:name=".TripInfoActivity" />
         <activity android:name=".TripListActivity" />
 
+        <activity android:name=".TripDetailsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MyStopsActivity"
             android:label="@string/stop_shortcut">
