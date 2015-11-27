@@ -294,5 +294,5 @@ dependencies {
     // Google Play Services Maps (only for Google flavor)
     googleCompile 'com.google.android.gms:play-services-maps:8.1.0'
     // Amazon Maps (only for Amazon flavor)
-    amazonCompile('com.amazon.android:amazon-maps-api:2.0')
+    //amazonCompile('com.amazon.android:amazon-maps-api:2.0')
 }

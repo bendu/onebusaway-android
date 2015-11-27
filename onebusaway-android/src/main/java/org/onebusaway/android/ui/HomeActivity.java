@@ -671,14 +671,7 @@ public class HomeActivity extends AppCompatActivity
         } else {
             // No stop is in focus (e.g., user tapped on the map), so hide the panel
             // and clear the currently focused stopId
-            mFocusedStopId = null;
-            moveMyLocationButton();
-            mSlidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
-            if (mArrivalsListFragment != null) {
-                FragmentManager fm = getSupportFragmentManager();
-                fm.beginTransaction().remove(mArrivalsListFragment).commit();
-            }
-            mShowArrivalsMenu = false;
+            dismissArrivalListPanel();
         }
     }
 
@@ -735,9 +728,23 @@ public class HomeActivity extends AppCompatActivity
                     || mSlidingPanel.getPanelState() == SlidingUpPanelLayout.PanelState.ANCHORED) {
                 mSlidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
                 return;
+            } else if (mSlidingPanel.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
+                dismissArrivalListPanel();
+                return;
             }
         }
         super.onBackPressed();
+    }
+
+    private void dismissArrivalListPanel() {
+        mFocusedStopId = null;
+        moveMyLocationButton();
+        mSlidingPanel.setPanelState(SlidingUpPanelLayout.PanelState.HIDDEN);
+        if (mArrivalsListFragment != null) {
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction().remove(mArrivalsListFragment).commit();
+        }
+        mShowArrivalsMenu = false;
     }
 
     private void updateArrivalListFragment(String stopId, ObaStop stop,
